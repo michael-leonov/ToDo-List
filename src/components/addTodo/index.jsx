@@ -11,7 +11,7 @@ function AddTodo() {
     e.preventDefault()
 
     if (value.trim().length === 0) {
-      alert('Нельзя добавить пустой Todo')
+      alert('Введите Todo')
       setValue('')
       return
     }

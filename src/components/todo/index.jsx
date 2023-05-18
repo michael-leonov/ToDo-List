@@ -27,24 +27,20 @@ export function Todo({ id, name, completed }) {
   }
 
   return (
-    <div className='flex justify-between gap-x-2 p-4 border border-slate-300'>
+    <li className='flex justify-between gap-x-2 py-2 px-4 bg-white custom-box-shadow rounded-full'>
       <div className='flex items-center gap-x-1'>
         {completed ? '👌' : '👋'}
-        <li className={`${completed ? 'line-through' : ''}`} onClick={updateTodoHandler}>
+        <p
+          className={`${completed ? 'line-through' : ''} text-slate-950 truncate w-36 `}
+          onClick={toggleTodoHandler}
+        >
           {name}
-        </li>
+        </p>
       </div>
 
-      <div className='flex items-center gap-x-1'>
-        <div className='flex flex-col gap-y-0.5'>
-          <label>{completed ? 'Выполнено' : 'Не выполнено'}</label>
-          <input type='checkbox' onChange={toggleTodoHandler} />
-        </div>
-
-        <button type='button' className='action-btn' onClick={deleteTodoHandler}>
-          Удалить
-        </button>
-      </div>
-    </div>
+      <button type='button' className='action-btn' onClick={deleteTodoHandler}>
+        Удалить
+      </button>
+    </li>
   )
 }

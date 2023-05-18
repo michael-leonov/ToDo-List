@@ -11,9 +11,11 @@ function TodoList() {
   return (
     <>
       {isEmpty ? (
-        <div className='text-center'>Нет Todos</div>
+        <div className='text-center'>Список пуст</div>
       ) : (
-        <ul className=''>{todos && todos.map((todo) => <Todo key={todo.id} {...todo} />)}</ul>
+        <ul className='flex flex-col gap-y-2'>
+          {todos && todos.map((todo) => <Todo key={todo.id} {...todo} />)}
+        </ul>
       )}
     </>
   )
