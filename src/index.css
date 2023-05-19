@@ -19,4 +19,12 @@
   .custom-box-shadow {
     box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2) inset;
   }
+
+  .overlay {
+    @apply fixed w-full h-full top-0 left-0 right-0 bottom-0 bg-black/70 flex justify-center items-center z-10;
+  }
+
+  .close-form-btn {
+    @apply relative cursor-pointer h-full hover:before:bg-slate-600 hover:after:bg-slate-600 before:content-[''] before:absolute before:w-full before:h-1 before:bg-gray-500 before:top-3 before:left-0 before:transition-colors before:duration-300 before:ease-in-out before:rotate-45 after:content-[''] after:absolute after:w-full after:h-1 after:bg-gray-500 after:top-3 after:left-0 after:transition-colors after:duration-300 after:ease-in-out after:rotate-[135deg];
+  }
 }

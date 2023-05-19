@@ -28,10 +28,12 @@ export function Todo({ id, name, completed }) {
 
   return (
     <li className='flex justify-between gap-x-2 py-2 px-4 bg-white custom-box-shadow rounded-full'>
-      <div className='flex items-center gap-x-1'>
+      <div className='flex items-center gap-x-1 text-slate-600'>
         {completed ? '👌' : '👋'}
         <p
-          className={`${completed ? 'line-through' : ''} text-slate-950 truncate w-36 `}
+          className={`${
+            completed ? 'line-through text-slate-300' : 'text-slate-700'
+          } truncate w-36 `}
           onClick={toggleTodoHandler}
         >
           {name}

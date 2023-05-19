@@ -13,7 +13,7 @@ function TodoList() {
       {isEmpty ? (
         <div className='text-center'>Список пуст</div>
       ) : (
-        <ul className='flex flex-col gap-y-2'>
+        <ul className='flex flex-col gap-y-2 mx-auto max-w-sm'>
           {todos && todos.map((todo) => <Todo key={todo.id} {...todo} />)}
         </ul>
       )}
