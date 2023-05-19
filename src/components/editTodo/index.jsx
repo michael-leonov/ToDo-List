@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { editTodo } from '../../redux/features/todoSlice'
 
-function EditTodo({ todoId, todoName, setIsOpenUpdateTodo }) {
-  const [value, setValue] = useState('')
+function EditTodo({ todoId, todoTitle, setIsOpenUpdateTodo }) {
+  const [value, setValue] = useState(todoTitle)
 
   const dispatch = useDispatch()
 
@@ -16,12 +16,12 @@ function EditTodo({ todoId, todoName, setIsOpenUpdateTodo }) {
       return
     }
 
-    if (todoName === value) {
+    if (todoTitle === value) {
       alert('Нечего менять')
       return
     }
 
-    dispatch(editTodo({ id: todoId, name: value }))
+    dispatch(editTodo({ id: todoId, title: value }))
 
     setIsOpenUpdateTodo(false)
   }
