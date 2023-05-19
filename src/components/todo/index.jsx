@@ -1,8 +1,10 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { deleteTodo, toggleTodo, updateTodo } from '../../redux/features/todoSlice'
+import { deleteTodo, toggleTodo } from '../../redux/features/todoSlice'
+import EditTodo from '../editTodo'
 
 export function Todo({ id, name, completed }) {
   const dispatch = useDispatch()
@@ -15,26 +17,20 @@ export function Todo({ id, name, completed }) {
     dispatch(deleteTodo(id))
   }
 
-  const updateTodoHandler = () => {
-    const newName = prompt('Введите новое название')
-
-    if (name === newName) {
-      alert('Нечего менять')
-      return
-    }
-
-    dispatch(updateTodo({ id, name: newName }))
-  }
+  const [isOpenEditTodo, setIsOpenEditTodo] = useState(false)
 
   return (
-    <li className='flex justify-between gap-x-2 py-2 px-4 bg-white custom-box-shadow rounded-full'>
+    <li
+      className='flex justify-between gap-x-2 py-2 px-4 bg-white custom-box-shadow rounded-full cursor-pointer'
+      onClick={toggleTodoHandler}
+    >
       <div className='flex items-center gap-x-1 text-slate-600'>
         {completed ? '👌' : '👋'}
         <p
           className={`${
             completed ? 'line-through text-slate-300' : 'text-slate-700'
           } truncate w-36 `}
-          onClick={toggleTodoHandler}
+          onClick={() => setIsOpenEditTodo(true)}
         >
           {name}
         </p>
@@ -43,6 +39,15 @@ export function Todo({ id, name, completed }) {
       <button type='button' className='action-btn' onClick={deleteTodoHandler}>
         Удалить
       </button>
+
+      {isOpenEditTodo && (
+        <div className='overlay'>
+          <EditTodo setIsOpenUpdateTodo={setIsOpenEditTodo} />
+          <div className='absolute top-3 right-4 w-10 h-10'>
+            <div className='close-form-btn' onClick={() => setIsOpenEditTodo(false)} />
+          </div>
+        </div>
+      )}
     </li>
   )
 }

@@ -25,7 +25,7 @@ export const todosSlice = createSlice({
       }
     },
 
-    updateTodo: (state, action) => {
+    editTodo: (state, action) => {
       const todo = state.find((todo) => todo.id === action.payload.id)
       if (todo) {
         todo.name = action.payload.name
@@ -34,6 +34,6 @@ export const todosSlice = createSlice({
   },
 })
 
-export const { addTodo, deleteTodo, toggleTodo, updateTodo } = todosSlice.actions
+export const { addTodo, deleteTodo, toggleTodo, editTodo } = todosSlice.actions
 
 export default todosSlice.reducer

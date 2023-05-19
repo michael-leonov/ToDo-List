@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addTodo } from '../../redux/features/todoSlice'
+import { editTodo } from '../../redux/features/todoSlice'
 
-function AddTodo() {
+function EditTodo({ todoId, todoName, setIsOpenUpdateTodo }) {
   const [value, setValue] = useState('')
 
   const dispatch = useDispatch()
 
-  const addTodoHandler = (e) => {
+  const editTodoHandler = (e) => {
     e.preventDefault()
 
     if (value.trim().length === 0) {
@@ -16,9 +16,14 @@ function AddTodo() {
       return
     }
 
-    dispatch(addTodo(value))
+    if (todoName === value) {
+      alert('Нечего менять')
+      return
+    }
 
-    setValue('')
+    dispatch(editTodo({ id: todoId, name: value }))
+
+    setIsOpenUpdateTodo(false)
   }
 
   return (
@@ -30,11 +35,11 @@ function AddTodo() {
         onChange={(e) => setValue(e.target.value)}
       />
 
-      <button type='button' className='action-btn self-center' onClick={addTodoHandler}>
-        Добавить
+      <button type='button' className='action-btn self-center' onClick={editTodoHandler}>
+        Редактировать
       </button>
     </div>
   )
 }
 
-export default AddTodo
+export default EditTodo
