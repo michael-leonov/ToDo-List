@@ -11,7 +11,7 @@ export const todosSlice = createSlice({
       const newTodo = {
         // eslint-disable-next-line no-plusplus
         id: ++nextTodoId,
-        name: action.payload,
+        title: action.payload,
         completed: false,
       }
       state.push(newTodo)
@@ -28,7 +28,7 @@ export const todosSlice = createSlice({
     editTodo: (state, action) => {
       const todo = state.find((todo) => todo.id === action.payload.id)
       if (todo) {
-        todo.name = action.payload.name
+        todo.title = action.payload.title
       }
     },
   },
