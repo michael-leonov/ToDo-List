@@ -5,8 +5,10 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { deleteTodo, toggleTodo } from '../../redux/features/todoSlice'
 import EditTodo from '../editTodo'
+import removeIcon from '../../assets/static/remove.png'
+import editIcon from '../../assets/static/edit.png'
 
-export function Todo({ id, name, completed }) {
+export function Todo({ id, name, completed, index }) {
   const dispatch = useDispatch()
 
   const toggleTodoHandler = () => {
@@ -30,15 +32,19 @@ export function Todo({ id, name, completed }) {
           className={`${
             completed ? 'line-through text-slate-300' : 'text-slate-700'
           } truncate w-36 `}
-          onClick={() => setIsOpenEditTodo(true)}
         >
           {name}
         </p>
       </div>
 
-      <button type='button' className='action-btn' onClick={deleteTodoHandler}>
-        Удалить
-      </button>
+      <div className='flex gap-x-2'>
+        <button type='button' className='w-6 h-6' onClick={() => setIsOpenEditTodo(true)}>
+          <img src={editIcon} alt='remove icon' />
+        </button>
+        <button type='button' className='w-6 h-6' onClick={deleteTodoHandler}>
+          <img src={removeIcon} alt='remove icon' />
+        </button>
+      </div>
 
       {isOpenEditTodo && (
         <div className='overlay'>
